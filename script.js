@@ -13,6 +13,12 @@ window.addEventListener("message", function (event) {
 
   if (dataParsed.eventType === "close") {
     renderContent("event close");
+    WebApp.close();
+  }
+
+  if (dataParsed.eventType === "test") {
+    renderContent("event test");
+    WebApp.BackButton.show();
   }
 });
 
