@@ -3,9 +3,7 @@ console.log("[iframe] js run");
 const root = document.querySelector("#root");
 
 window.addEventListener("message", function (event) {
-  // if (event.origin !== "https://a-rusin.github.io/test-sender") return; // без слеша (/)
-
-  console.log(event);
+  if (event.origin !== "https://a-rusin.github.io") return; // без слеша (/)
 
   const data = event.data;
 
