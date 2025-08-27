@@ -7,10 +7,17 @@ window.addEventListener("message", function (event) {
 
   const data = event.data;
 
-  const newDiv = document.createElement("div");
-  newDiv.textContent = event.data;
+  renderContent(data);
 
-  root.appendChild(newDiv);
+  const dataParsed = JSON.parse(data);
 
-  console.log(data);
+  if (dataParsed.eventType === "close") {
+    renderContent("event close");
+  }
 });
+
+function renderContent(content) {
+  const newDiv = document.createElement("div");
+  newDiv.textContent = content;
+  root.appendChild(newDiv);
+}
