@@ -9,6 +9,8 @@ window.addEventListener("message", function (event) {
 
   renderContent(data);
 
+  console.log(event);
+
   const dataParsed = JSON.parse(data);
 
   if (dataParsed.eventType === "close") {
