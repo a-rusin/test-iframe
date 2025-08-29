@@ -11,14 +11,12 @@ window.addEventListener("message", function (event) {
 
   console.log(event);
 
-  const dataParsed = JSON.parse(data);
-
-  if (dataParsed.eventType === "close") {
+  if (data?.eventType === "close") {
     renderContent("event close");
     WebApp.close();
   }
 
-  if (dataParsed.eventType === "test") {
+  if (data?.eventType === "test") {
     renderContent("event test");
     WebApp.BackButton.show();
   }
