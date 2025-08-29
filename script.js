@@ -3,23 +3,30 @@ console.log("[iframe] js run");
 const root = document.querySelector("#root");
 
 window.addEventListener("message", function (event) {
-  if (event.origin !== "https://a-rusin.github.io") return; // без слеша (/)
+  if (event.origin !== "https://a-rusin.github.io") return;
 
   const data = event.data;
 
-  renderContent(data);
+  let updatedData;
 
-  console.log(event);
+  if (typeof data === "object") {
+    updatedData = data;
+  } else if (typeof data === "string") {
+    if (data.includes('{"')) {
+      updatedData = JSON.parse(data);
+    } else {
+      updatedData = data;
+    }
+  }
 
-  const dataStringify = JSON.stringify(data);
-  const dataParsed = JSON.parse(dataStringify);
+  renderContent(updatedData);
 
-  if (dataParsed.eventType === "close") {
+  if (updatedData.eventType === "close") {
     renderContent("event close");
     WebApp.close();
   }
 
-  if (dataParsed.eventType === "test") {
+  if (updatedData.eventType === "test") {
     renderContent("event test");
     WebApp.BackButton.show();
   }
@@ -27,6 +34,6 @@ window.addEventListener("message", function (event) {
 
 function renderContent(content) {
   const newDiv = document.createElement("div");
-  newDiv.textContent = content;
+  newDiv.textContent = JSON.stringify(content);
   root.appendChild(newDiv);
 }
