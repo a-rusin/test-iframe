@@ -23,7 +23,7 @@ window.addEventListener("message", function (event) {
 
   if (updatedData.type === "WebAppClose") {
     renderContent("event WebAppClose!");
-    renderContent(window.top);
+    // renderContent(window.top);
     console.log(window.top);
   }
 
