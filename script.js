@@ -21,14 +21,14 @@ window.addEventListener("message", function (event) {
 
   renderContent(updatedData);
 
-  if (updatedData.eventType === "close") {
-    renderContent("event close");
-    WebApp.close();
+  if (updatedData.type === "WebAppClose") {
+    renderContent("event WebAppClose");
+    renderContent(window.top);
+    console.log(window.top);
   }
 
-  if (updatedData.eventType === "test") {
+  if (updatedData.type === "test") {
     renderContent("event test");
-    WebApp.BackButton.show();
   }
 });
 
