@@ -28,7 +28,7 @@ window.addEventListener("message", function (event) {
 
     console.log(updatedData);
 
-    window.top.postMessage(updatedData, "*");
+    window.top.postMessage(JSON.stringify(updatedData), "*");
   }
 
   if (updatedData.type === "test") {
